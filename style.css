@@ -20,73 +20,91 @@ header {
 }
 
 /* Tarjetas */
-img {
-    display: block;
-    max-width: 60%;
+.tarjetas{
+    margin-top: 10em;
+}
+.stack-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 1 columna en mobile */
+    gap: 10em;
+    /* espacio entre tarjetas */
+    max-width: 350px;
+    /* ancho máximo menor */
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 .stack {
-    width: 55%;
-    max-width: 400px;
+    width: 100%;
+    /* ocupa todo el espacio disponible */
+    max-width: none;
+    /* elimina max-width para que el grid controle */
     transition: 0.25s ease;
+    cursor: pointer;
+}
 
-    &:hover {
-        transform: rotate(5deg);
+.stack:hover {
+    transform: rotate(5deg);
+}
 
-        .card:before {
-            transform: translatey(-2%) rotate(-4deg);
-        }
+.stack:hover .card:before {
+    transform: translateY(-2%) rotate(-4deg);
+}
 
-        .card:after {
-            transform: translatey(2%) rotate(4deg);
-        }
-    }
+.stack:hover .card:after {
+    transform: translateY(2%) rotate(4deg);
 }
 
 .card {
     aspect-ratio: 3 / 2;
-    border: 4px solid;
+    border: 3px solid #000;
     background-color: #fff;
     position: relative;
     transition: 0.15s ease;
-    cursor: pointer;
     padding: 5% 5% 15% 5%;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+}
 
-    &:before,
-    &:after {
-        content: "";
-        display: block;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        border: 4px solid;
-        background-color: #fff;
-        transform-origin: center center;
-        z-index: -1;
-        transition: 0.15s ease;
-        top: 0;
-        left: 0;
-    }
+.card:before,
+.card:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: 3px solid #000;
+    background-color: #fff;
+    transform-origin: center center;
+    z-index: -1;
+    transition: 0.15s ease;
+    top: 0;
+    left: 0;
+}
 
-    &:before {
-        transform: translatey(-2%) rotate(-6deg);
-    }
+.card:before {
+    transform: translateY(-2%) rotate(-6deg);
+}
 
-    &:after {
-        transform: translatey(2%) rotate(6deg);
-    }
+.card:after {
+    transform: translateY(2%) rotate(6deg);
 }
 
 .image {
     width: 100%;
-    border: 4px solid;
+    border: 3px solid #000;
     background-color: #eee;
     aspect-ratio: 1 / 1;
     position: relative;
 }
 
+/* Advertencia para browsers sin soporte de aspect-ratio */
 .browser-warning {
     margin-bottom: 4rem;
+    text-align: center;
+    font-weight: bold;
+    color: red;
 }
 
 @supports (aspect-ratio: 1 / 1) {
@@ -196,7 +214,7 @@ nav {
     background-color: red;
     width: 100%;
     height: 10em;
-    margin-top: 6em;
+    margin-top: 7em;
 }
 
 @media (min-width: 768px) {
@@ -215,5 +233,11 @@ nav {
 
     .hamburguesa {
         left: 75px;
+    }
+
+    .stack-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15em;
+        max-width: 74%;
     }
 }
